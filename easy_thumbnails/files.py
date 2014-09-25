@@ -534,7 +534,8 @@ class ThumbnailerFieldFile(FieldFile, Thumbnailer):
         super(ThumbnailerFieldFile, self).__init__(*args, **kwargs)
         self.source_storage = self.field.storage
         thumbnail_storage = getattr(self.field, 'thumbnail_storage', None)
-        self.thumbnail_storage = thumbnail_storage
+        if thumbnail_storage:
+            self.thumbnail_storage = thumbnail_storage
         self.alias_target = self
 
     def save(self, name, content, *args, **kwargs):
